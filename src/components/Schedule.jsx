@@ -9,7 +9,7 @@ import useScheduleStore from '../hooks/useScheduleStore';
 moment.locale('ko-KR');
 const localizer = momentLocalizer(moment);
 
-export default function Schedule() {
+export default function Schedule({ trainer, value }) {
   const lectureStore = useLectureStore();
   const scheduleStore = useScheduleStore();
 
@@ -17,10 +17,10 @@ export default function Schedule() {
   const { ptSchedules } = lectureStore;
 
   useEffect(() => {
-    lectureStore.fetchLectures(1);
-    scheduleStore.fetchSchedules(1);
+    lectureStore.fetchLectures(trainer.id);
+    scheduleStore.fetchSchedules(trainer.id);
     console.log(ptSchedules);
-  }, []);
+  }, [trainer.id, value]);
 
   const message = {
     next: '다음 달',
@@ -40,7 +40,7 @@ export default function Schedule() {
         <Calendar
           localizer={localizer}
           events={schedule}
-          style={{ height: 500, width: 1600 }}
+          style={{ height: 400, width: 800 }}
           min={new Date(2022, 11, 9, 9, 0)}
           max={new Date(2022, 11, 9, 18, 0)}
           step={30}

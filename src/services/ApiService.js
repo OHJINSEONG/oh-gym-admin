@@ -32,13 +32,19 @@ export default class ApiService {
   }
 
   async createLecture(registerImformation) {
-    const { data } = await axios.post(`${baseUrl}/lectures`, registerImformation);
+    const { data } = await axios.patch(`${baseUrl}/admin-lectures`, registerImformation);
 
     return data;
   }
 
   async fetchLectures(trainerId) {
-    const { data } = await axios.get(`${baseUrl}/lectures/${trainerId}`);
+    const { data } = await axios.get(`${baseUrl}/admin-lectures/${trainerId}`);
+
+    return data;
+  }
+
+  async approveLecture(lectureId, userId) {
+    const { data } = await axios.patch(`${baseUrl}/admin-lectures/${lectureId}`, { userId });
 
     return data;
   }
@@ -51,6 +57,78 @@ export default class ApiService {
 
   async fetchSchedules(trainerId) {
     const { data } = await axios.get(`${baseUrl}/works/${trainerId}`);
+
+    return data;
+  }
+
+  async fetchMembers() {
+    const { data } = await axios.get(`${baseUrl}/admin-users`);
+
+    return data;
+  }
+
+  async findMember(memberId) {
+    const { data } = await axios.get(`${baseUrl}/admin-users/${memberId}`);
+
+    return data;
+  }
+
+  async findAllByInUseTicket(trainerId) {
+    const { data } = await axios.get(`${baseUrl}/admin-trainers/${trainerId}/use-ticket-users`);
+
+    return data;
+  }
+
+  async fetchWorkers() {
+    const { data } = await axios.get(`${baseUrl}/trainers`);
+
+    return data;
+  }
+
+  async findWorker(workerId) {
+    const { data } = await axios.get(`${baseUrl}/trainers/${workerId}`);
+
+    return data;
+  }
+
+  async fetchLockers() {
+    const { data } = await axios.get(`${baseUrl}/admin-lockers`);
+
+    return data;
+  }
+
+  async findLocker(lockerId) {
+    const { data } = await axios.get(`${baseUrl}/admin-lockers/${lockerId}`);
+
+    return data;
+  }
+
+  async fetchLocker(lockerId, requestImformation) {
+    const { data } = await axios.patch(`${baseUrl}/admin-lockers/${lockerId}`, requestImformation);
+
+    return data;
+  }
+
+  async fetchTicket(ticketId, startDate) {
+    const { data } = await axios.patch(`${baseUrl}/locker-tickets/${ticketId}?date=${startDate}`);
+
+    return data;
+  }
+
+  async cancelLockerTicket(ticketId) {
+    const { data } = await axios.patch(`${baseUrl}/locker-tickets/cancel/${ticketId}`);
+
+    return data;
+  }
+
+  async fetchOrders() {
+    const { data } = await axios.get(`${baseUrl}/admin-orders`);
+
+    return data;
+  }
+
+  async fetchChattingRooms(trainerId) {
+    const { data } = await axios.get(`${baseUrl}/trainers/${trainerId}/chattingRooms`);
 
     return data;
   }

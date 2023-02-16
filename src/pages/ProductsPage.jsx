@@ -66,7 +66,7 @@ export default function ProductsPage() {
         ))}
       </ProductList>
       <ProductRegister>
-        <Link to="register">상품등록</Link>
+        <Link to="register">피티상품등록</Link>
       </ProductRegister>
     </Container>
   );

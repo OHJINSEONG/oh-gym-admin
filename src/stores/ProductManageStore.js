@@ -6,7 +6,6 @@ export default class ProductManageStore extends Store {
     super();
     this.products = [];
     this.product = {};
-    this.options = [];
   }
 
   async fetchProducts() {

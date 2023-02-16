@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fb9c96cf-ce7c-4c31-bd37-a4203b948c92" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SettingDate.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SettingDate.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/MembersPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MembersPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/WorkerManagePage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/WorkerManagePage.test.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/WorkersPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/WorkersPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/ApiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ApiService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/MemberManageStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/MemberManageStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/WorkerManageStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/WorkerManageStore.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2J6rcswOp6dv5mdapMJaIcCyqcx" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fb9c96cf-ce7c-4c31-bd37-a4203b948c92" name="Changes" comment="" />
+      <created>1671409456213</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1671409456213</updated>
+    </task>
+    <servers />
+  </component>
+</project>
