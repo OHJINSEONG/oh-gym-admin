@@ -6,7 +6,6 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-height: 500px;
 `;
 
 const ProductOption = styled.div`
@@ -34,7 +33,7 @@ export default function ProductRegister({ handleClickCreate, setMode }) {
           id="input-title"
           type="text"
           name="title"
-          {...register('title')}
+          {...register('title', { required: true })}
         />
       </div>
       <div>
@@ -45,7 +44,7 @@ export default function ProductRegister({ handleClickCreate, setMode }) {
           id="input-trainer"
           type="text"
           name="trainer"
-          {...register('trainer')}
+          {...register('trainer', { required: true })}
         />
       </div>
       <ProductOption>

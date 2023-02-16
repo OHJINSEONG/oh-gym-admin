@@ -1,12 +1,13 @@
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
+import useProductFormStore from '../hooks/useProductFormStore';
 
 const Container = styled.form`
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-height: 500px;
+padding-top: 100px;
 `;
 
 const OptionAdd = styled.div`
@@ -15,15 +16,14 @@ const OptionAdd = styled.div`
   padding: 10px 20px;
 `;
 
-export default function ProductAddOption({ options, setMode }) {
+export default function ProductAddOption({ setMode }) {
+  const productFormStore = useProductFormStore();
+
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = (data) => {
-    options.push(data);
-  };
-
-  const handleClickOptionDelete = () => {
-    options.splice(0);
+    productFormStore.addOption({ type: 'PT', ...data });
+    setMode(false);
   };
 
   return (
@@ -35,10 +35,11 @@ export default function ProductAddOption({ options, setMode }) {
         </label>
         <input
           id="input-dateOfUse"
-          type="text"
+          type="number"
           name="dateOfUse"
-          {...register('dateOfUse')}
+          {...register('dateOfUse', { required: true })}
         />
+        일
       </div>
       <div>
         <label htmlFor="input-ptTimes">
@@ -46,32 +47,11 @@ export default function ProductAddOption({ options, setMode }) {
         </label>
         <input
           id="input-ptTimes"
-          type="text"
+          type="number"
           name="ptTimes"
-          {...register('ptTimes')}
+          {...register('ptTimes', { required: true })}
         />
-      </div>
-      <div>
-        <label htmlFor="input-dayOfWeek">
-          피티 요일
-        </label>
-        <input
-          id="input-dayOfWeek"
-          type="text"
-          name="dayOfWeek"
-          {...register('dayOfWeek')}
-        />
-      </div>
-      <div>
-        <label htmlFor="input-time">
-          피티 받는 시간
-        </label>
-        <input
-          id="input-time"
-          type="text"
-          name="time"
-          {...register('time')}
-        />
+        회
       </div>
       <div>
         <label htmlFor="input-price">
@@ -79,10 +59,11 @@ export default function ProductAddOption({ options, setMode }) {
         </label>
         <input
           id="input-price"
-          type="text"
+          type="number"
           name="price"
-          {...register('price')}
+          {...register('price', { required: true })}
         />
+        원
       </div>
       <OptionAdd>
         <button type="submit">추가</button>
@@ -90,7 +71,6 @@ export default function ProductAddOption({ options, setMode }) {
       <button type="button" onClick={() => setMode(false)}>
         뒤로가기
       </button>
-      <button type="button" onClick={handleClickOptionDelete}>옵션 제거</button>
     </Container>
   );
 }

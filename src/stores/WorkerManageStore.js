@@ -4,15 +4,34 @@ import Store from './Store';
 export default class WorkerManageStore extends Store {
   constructor() {
     super();
-    this.workers = [{
-      id: 1,
-      name: '오진성',
-    },
-    {
-      id: 2,
-      name: '오진욱',
-    },
-    ];
+    this.workers = [];
+    this.worker = {};
+
+    this.workerManagement = {};
+  }
+
+  async fetchWorkers() {
+    const workers = await apiService.fetchWorkers();
+
+    this.workers = workers;
+
+    this.publish();
+  }
+
+  async find(workerId) {
+    const worker = await apiService.findWorker(workerId);
+
+    this.worker = worker;
+
+    this.publish();
+  }
+
+  async findAllByInUseTicket(trainerId) {
+    const workerManagement = await apiService.findAllByInUseTicket(trainerId);
+
+    this.workerManagement = workerManagement;
+
+    this.publish();
   }
 }
 
