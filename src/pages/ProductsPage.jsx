@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import useProductManageStore from '../hooks/useProductManageStore';
@@ -35,9 +35,13 @@ const ProductList = styled.ul`
 `;
 
 const ProductRegister = styled.div`
-  border: 1px solid black;
-  margin-top: 20px;
-  padding: 10px 20px;
+  display : flex ;
+ 
+  a{
+    border: 1px solid black;
+    margin-top: 20px;
+    padding: 10px 20px;
+  }
 `;
 
 export default function ProductsPage() {
@@ -49,15 +53,11 @@ export default function ProductsPage() {
     productManageStore.fetchProducts();
   }, []);
 
-  if (!products) {
-    return (<p>상품이 없습니다</p>);
-  }
-
   return (
     <Container>
-      <p>Products</p>
+      <p>Register</p>
       <ProductList>
-        {products.map((product) => (
+        {products?.map((product) => (
           <li key={product.id}>
             <Link className="item" to={`${product.id}`}>
               {product.title}
@@ -66,7 +66,8 @@ export default function ProductsPage() {
         ))}
       </ProductList>
       <ProductRegister>
-        <Link to="register">피티상품등록</Link>
+        <Link to="product">피티상품등록</Link>
+        <Link to="trainer">트레이너등록</Link>
       </ProductRegister>
     </Container>
   );

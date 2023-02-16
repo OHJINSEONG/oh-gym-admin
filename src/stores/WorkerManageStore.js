@@ -33,6 +33,14 @@ export default class WorkerManageStore extends Store {
 
     this.publish();
   }
+
+  async create(trainerRegisterData) {
+    const worker = await apiService.createTrainer(trainerRegisterData);
+
+    this.worker = worker;
+
+    this.publish();
+  }
 }
 
 export const workerManageStore = new WorkerManageStore();

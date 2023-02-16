@@ -79,6 +79,12 @@ export default class ApiService {
     return data;
   }
 
+  async createTrainer(trainerRegisterData) {
+    const { data } = await axios.post(`${baseUrl}/admin-trainers`, trainerRegisterData);
+
+    return data;
+  }
+
   async fetchWorkers() {
     const { data } = await axios.get(`${baseUrl}/trainers`);
 
