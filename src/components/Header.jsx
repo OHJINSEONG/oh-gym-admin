@@ -52,9 +52,12 @@ export default function Header() {
           <li>
             <Link to="/">home</Link>
           </li>
-          {/* <li>
+          <li>
+            <Link to="/register">register</Link>
+          </li>
+          <li>
             <Link to="/members">members</Link>
-          </li> */}
+          </li>
           <li>
             <Link to="/workers">workers</Link>
           </li>

@@ -6,6 +6,10 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+
+h2{
+  margin-bottom: 20px;
+}
 `;
 
 const ProductOption = styled.div`
@@ -14,7 +18,7 @@ const ProductOption = styled.div`
   padding: 10px 20px;
 `;
 
-export default function ProductRegister({ handleClickCreate, setMode }) {
+export default function ProductRegister({ handleClickCreate, setMode, trainer }) {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = (data) => {
@@ -37,15 +41,11 @@ export default function ProductRegister({ handleClickCreate, setMode }) {
         />
       </div>
       <div>
-        <label htmlFor="input-trainer">
+        <p>
           트레이너
-        </label>
-        <input
-          id="input-trainer"
-          type="text"
-          name="trainer"
-          {...register('trainer', { required: true })}
-        />
+          {' '}
+          {trainer.userName}
+        </p>
       </div>
       <ProductOption>
         <button type="button" onClick={() => setMode(true)}>옵션 추가</button>

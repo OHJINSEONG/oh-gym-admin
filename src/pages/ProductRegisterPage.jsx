@@ -4,6 +4,7 @@ import ProductAddOption from '../components/ProductAddOption';
 import ProductRegister from '../components/ProductRegister';
 import useProductFormStore from '../hooks/useProductFormStore';
 import useProductManageStore from '../hooks/useProductManageStore';
+import useWorkerManageStore from '../hooks/useWorkerManageStore';
 
 const Container = styled.div`
   display: flex;
@@ -21,10 +22,41 @@ const Container = styled.div`
   }
   `;
 
+const ListWrapper = styled.ul`
+width: 850px;
+height: 70px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 50px;
+
+
+li{
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+height: 100%;
+color: black;
+border: 1px solid #D1D1D1;
+box-shadow: 0px 6px 6px 0px black;
+}
+
+.select{
+background-color: #EF781A;
+color: white;
+box-shadow: 0px 6px 6px 0px black;
+}
+`;
+
 export default function ProductRegisterPage() {
   const productFormStore = useProductFormStore();
   const productManageStore = useProductManageStore();
+  const workerManageStore = useWorkerManageStore();
 
+  const { workers } = workerManageStore;
+
+  const [trainer, setTrainer] = useState({});
   const [mode, setMode] = useState(false);
 
   const { options } = productFormStore;
@@ -36,8 +68,9 @@ export default function ProductRegisterPage() {
   const handleClickCreate = (data) => {
     const productImformation = {
       title: data.title,
-      trainerId: 1,
+      trainerId: trainer.id,
       options,
+      type: 'PT',
     };
 
     console.log(productImformation);
@@ -61,9 +94,18 @@ export default function ProductRegisterPage() {
 
   return (
     <Container>
+      <ListWrapper>
+        {workers.length ? workers.map((worker) => (
+          <li key={worker.id} className={trainer.id === worker.id ? 'select' : ''}>
+            <button type="button" onClick={() => setTrainer(worker)}>{worker.userName}</button>
+          </li>
+        ))
+          : null}
+      </ListWrapper>
       <ProductRegister
         handleClickCreate={handleClickCreate}
         setMode={setMode}
+        trainer={trainer}
       />
       <ul>
         {options.map((option) => (
