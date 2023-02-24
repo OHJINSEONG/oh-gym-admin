@@ -23,20 +23,6 @@ ul{
   max-height: 400px;
 }
 
-.alarm{
-  position: absolute;
-  top: 69.5%;
-  right: 45%;
-  display: flex;
-justify-content: center;
-align-items: center;
-  width: 20px;
-  height: 20px;
-  font-size: 10px;
-  border-radius: 50%;
-  color: white;
-  background-color: #EF781A;
-}
 `;
 
 const PtRequestWrapper = styled.li`
@@ -57,7 +43,25 @@ const PtRequestButton = styled.button`
   height: 40px;
   border: 1px solid #D1D1D1;
   border-radius: 20px;
+
+  div{
+    position: relative;
+    left: 80%;
+    bottom: 40%;
+  }
   
+  .alarm{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    border-radius: 50%;
+    color: white;
+    background-color: #EF781A;
+}
 `;
 
 const PtRequestButtonWrapper = styled.div`
@@ -85,7 +89,6 @@ export default function PtRequest({ trainer, setValue }) {
 
   useEffect(() => {
     messageStore.fetchRequests(trainer.id);
-    console.log(requests);
   }, [mod, trainer.id]);
 
   const handleClickFetchRequest = () => {
@@ -95,9 +98,7 @@ export default function PtRequest({ trainer, setValue }) {
   };
 
   const handleClickApprove = async (request) => {
-    console.log(request.context);
-
-    await lectureStore.approve(request.lectureId, request.senderId);
+    await lectureStore.approve(request.lectureId, request.senderId, request.message);
 
     await messageStore.requestDelete(request.id);
 
@@ -110,18 +111,28 @@ export default function PtRequest({ trainer, setValue }) {
   };
 
   const handleClickRefuse = async (request) => {
+    await lectureStore.delete(request.lectureId, request.senderId, request.message);
+
     await messageStore.requestDelete(request.id);
-    await lectureStore.delete(request.lectureId);
+
     mod ? setMod(false)
       : setMod(true);
+
+    setValue((value) => value + 1);
   };
 
   return (
     <Container>
-      {unCheckedCount === 0
-        ? null
-        : <p className="alarm">{unCheckedCount}</p>}
-      <PtRequestButton type="button" onClick={handleClickFetchRequest}>피티 요청</PtRequestButton>
+      <PtRequestButton type="button" onClick={handleClickFetchRequest}>
+        {unCheckedCount === 0
+          ? null
+          : (
+            <div>
+              <p className="alarm">{unCheckedCount}</p>
+            </div>
+          ) }
+        피티 요청
+      </PtRequestButton>
       <ul>
         {mode
           ? requests.filter((e) => e.status !== 'DELETED').map((request) => (

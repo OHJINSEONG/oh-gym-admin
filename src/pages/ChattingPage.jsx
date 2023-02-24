@@ -20,8 +20,6 @@ export default function ChattingPage() {
 
   const { worker } = location.state;
 
-  const [accessToken] = useLocalStorage('accessToken', '123');
-
   const nickname = worker.name;
 
   const path = location.pathname;
@@ -34,13 +32,11 @@ export default function ChattingPage() {
   const stompClient = useRef({});
 
   useEffect(() => {
-    console.log(worker);
     const sockJs = new SockJs(`${baseUrl}/stomp/chat`);
 
     stompClient.current = Stomp.over(sockJs);
 
     stompClient.current.connect({ }, () => {
-      console.log('hi');
       stompClient.current.subscribe(`/sub/chats/room/${roomId}`, (chats) => {
         if (stompClient.current.connected) {
           setChatMessages([]);
@@ -71,13 +67,19 @@ export default function ChattingPage() {
       });
 
       stompClient.current.send(
-        '/pub/chat/messages',
+        '/pub/trainer/chat/messages',
         {},
-        JSON.stringify({ roomId, writer: worker.name }),
+        JSON.stringify({ roomId, trainerId: worker.id }),
       );
     });
 
     return () => {
+      stompClient.current.send(
+        '/pub/trainer/chat/messages',
+        {},
+        JSON.stringify({ roomId, trainerId: worker.id }),
+      );
+
       if (stompClient.current.connected) {
         stompClient.current.disconnect(() => {
           stompClient.current.connected = false;
@@ -91,12 +93,13 @@ export default function ChattingPage() {
       return;
     }
     stompClient.current.send(
-      '/pub/chat/message',
+      '/pub/trainer/chat/message',
       { },
       JSON.stringify({
         roomId,
         writer: worker.name,
         message,
+        trainerId: worker.id,
       }),
     );
 

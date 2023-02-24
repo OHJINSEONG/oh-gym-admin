@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import useMemberManageStore from '../hooks/useMemberManageStore';
+import useProductManageStore from '../hooks/useProductManageStore';
+import useWorkerManageStore from '../hooks/useWorkerManageStore';
 
 const Container = styled.form`
   display: flex;
@@ -74,34 +76,40 @@ const TrainerInformation = styled.div`
     }
 `;
 
-export default function MembersPage() {
+export default function TrainerMembersPage() {
   const navigator = useNavigate();
 
-  const memberManageStore = useMemberManageStore();
+  const { workerId } = useParams();
+
+  const workerManageStore = useWorkerManageStore();
 
   const find = async () => {
-    await memberManageStore.fetchMembers();
+    await workerManageStore.findAllByInUseTicket(workerId);
+    await workerManageStore.find(workerId);
   };
 
   useEffect(() => {
     find();
-    console.log(memberManageStore.members);
+    console.log(workerId);
+    console.log(workerManageStore.worker);
   }, []);
 
   return (
     <Container>
       <h1>
-        회원 관리
+        {workerManageStore.worker.userName}
+        {' '}
+        트레이너
       </h1>
-      {/* <p>회원 관리</p> */}
-      {memberManageStore.members.length
-        ? memberManageStore.members.map((member) => (
-          <li key={member.id}>
-            <Link className="item" to={`${member.id}`}>
+      <p>회원 관리</p>
+      {workerManageStore.workerManagement.length
+        ? workerManageStore.workerManagement.map((management) => (
+          <li key={management?.user.id}>
+            <Link className="item" to={`${management?.user.id}`}>
               <TrainerInformation>
                 <p>
                   이름:
-                  {member.userName}
+                  {management.user.userName}
                 </p>
                 <div>
                   <p>
@@ -119,7 +127,8 @@ export default function MembersPage() {
                 </div>
               </TrainerInformation>
             </Link>
-            {/* <button type="button" onClick={() => navigator(`${member?.user.id}/chats`)}>상담톡</button> */}
+            {/* <button type="button" onClick={() => navigator(`${management?.user.id}/chats`)}>상담톡</button> */}
+            <button type="button" className="admin" onClick={() => navigator(`${management?.user.id}`, { state: { diarys: management?.diarys, member: management.user } })}>운동일지</button>
           </li>
         ))
         : null}

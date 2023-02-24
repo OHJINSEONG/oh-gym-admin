@@ -38,13 +38,13 @@ const ListWrapper = styled.ul`
 
     li{
       display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    color: black;
-    border: 1px solid #D1D1D1;
-    box-shadow: 0px 6px 6px 0px black;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      color: black;
+      border: 1px solid #D1D1D1;
+      box-shadow: 0px 6px 6px 0px black;
     }
 
     .select{
@@ -52,12 +52,27 @@ const ListWrapper = styled.ul`
       color: white;
       box-shadow: 0px 6px 6px 0px black;
     }
+
+    div{
+      position: relative;
+      left: 110%;
+    }
+
+    p{
+      position: absolute;
+      color:red;
+      font-size: 15px;
+      font-weight: 600;
+      bottom: -5px;
+    }
   `;
 
 export default function WorkerSchedulesManagePage() {
   const { workers } = workerManageStore;
 
-  const [trainer, setTrainer] = useState({});
+  const firstWorker = workers.length ? workers[0].trainerInformation : {};
+
+  const [trainer, setTrainer] = useState(firstWorker);
   const [value, setValue] = useState(0);
 
   useEffect(() => {
@@ -69,8 +84,17 @@ export default function WorkerSchedulesManagePage() {
     <Container>
       <ListWrapper>
         {workers.length ? workers.map((worker) => (
-          <li key={worker.id} className={trainer.id === worker.id ? 'select' : ''}>
-            <button type="button" onClick={() => setTrainer(worker)}>{worker.userName}</button>
+          <li key={worker.trainerInformation.id} className={trainer.id === worker.trainerInformation.id ? 'select' : ''}>
+            <button type="button" onClick={() => setTrainer(worker.trainerInformation)}>
+              {worker.unCheckedRequest
+                ? (
+                  <div>
+                    <p>!</p>
+                  </div>
+                )
+                : null}
+              {worker.trainerInformation.userName}
+            </button>
           </li>
         ))
           : null}
