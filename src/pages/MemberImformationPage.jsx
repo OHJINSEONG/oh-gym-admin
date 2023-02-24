@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import useMemberManageStore from '../hooks/useMemberManageStore';
 
 const Container = styled.form`
   display: flex;

@@ -12,6 +12,8 @@ const Container = styled.div`
   height: 60px;
   background-color: #EF781A;
   border-bottom: solid 1px #D1D1D1;
+  z-index: 999;
+
   nav{
     height: 100%;
   }

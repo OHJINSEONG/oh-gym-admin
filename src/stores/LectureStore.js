@@ -9,10 +9,16 @@ export default class LectureStore extends Store {
     this.ptSchedules = [];
   }
 
-  async approve(lectureId, userId) {
-    const lecture = await apiService.approveLecture(lectureId, userId);
+  async approve(lectureId, userId, message) {
+    const lecture = await apiService.approveLecture(lectureId, userId, message);
 
     this.lecture = lecture;
+
+    this.publish();
+  }
+
+  async delete(lectureId, userId, message) {
+    await apiService.deleteLecture(lectureId, userId, message);
 
     this.publish();
   }

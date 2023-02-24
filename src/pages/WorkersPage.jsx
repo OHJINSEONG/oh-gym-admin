@@ -52,6 +52,19 @@ const Container = styled.form`
     margin-left: 10px;
     border-radius: 20px;
     box-shadow: 0px 3px 3px 0px gray;
+
+    div{
+      position: relative;
+      left: 80%;
+      bottom: 70%;
+      
+      p{
+        position: absolute;
+        color:red;
+        font-size: 15px;
+        font-weight: 800;
+      }
+    }
   }
 
   .admin{
@@ -79,6 +92,7 @@ export default function WorkersPage() {
 
   useEffect(() => {
     workerManageStore.fetchWorkers();
+    console.log(workerManageStore.workers);
   }, []);
 
   const { workers } = workerManageStore;
@@ -87,40 +101,46 @@ export default function WorkersPage() {
     <Container>
       <h1>Workers</h1>
       {workers.map((worker) => (
-        <li key={worker.id}>
-          <Link className="item" to={`${worker.id}`}>
+        <li key={worker.trainerInformation.id}>
+          <Link className="item" to={`${worker.trainerInformation.id}`}>
             <TrainerInformation>
               <p>
                 이름:
                 {' '}
-                {worker.name}
+                {worker.trainerInformation.name}
               </p>
               <div>
                 <p>
                   닉네임:
                   {' '}
-                  {worker.userName}
+                  {worker.trainerInformation.userName}
                 </p>
                 <p>
                   나이:
                   {' '}
-                  {worker.age}
+                  {worker.trainerInformation.age}
                 </p>
                 <p>
                   성별:
                   {' '}
-                  {worker.gender}
+                  {worker.trainerInformation.gender}
                 </p>
                 <p>
                   전화 번호:
                   {' '}
-                  {worker.phoneNumber}
+                  {worker.trainerInformation.phoneNumber}
                 </p>
               </div>
             </TrainerInformation>
           </Link>
-          <button type="button" onClick={() => navigator(`${worker.id}/chats`)}>상담톡</button>
-          <button type="button" className="admin" onClick={() => navigator(`${worker.id}/members`)}>회원관리</button>
+
+          <button type="button" onClick={() => navigator(`${worker.trainerInformation.id}/chats`)}>
+            {worker.unCheckedChat
+              ? <div><p>!</p></div>
+              : null}
+            상담톡
+          </button>
+          <button type="button" className="admin" onClick={() => navigator(`${worker.trainerInformation.id}/members`)}>회원관리</button>
         </li>
       ))}
     </Container>

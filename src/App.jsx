@@ -13,6 +13,7 @@ import ProductRegisterPage from './pages/ProductRegisterPage';
 import ProductsPage from './pages/ProductsPage';
 import RegisterPage from './pages/RegisterPage';
 import SalesPage from './pages/SalesPage';
+import TrainerMembersPage from './pages/TrainerMembersPage';
 import TrainerRegisterPage from './pages/TrainerRegisterPage';
 import WorkerImformationPage from './pages/WorkerImformationPage';
 import WorkerSchedulesManagePage from './pages/WorkerSchedulesManagePage';
@@ -32,10 +33,10 @@ export default function App() {
           <Route path="/register/product" element={<ProductRegisterPage />} />
           <Route path="/register/trainer" element={<TrainerRegisterPage />} />
           <Route path="/members" element={<MembersPage />} />
-          <Route path="/members/:memberId" element={<MemberImformationPage />} /> */}
+          <Route path="/members/:memberId" element={<MemberImformationPage />} />
           <Route path="/workers" element={<WorkersPage />} />
           <Route path="/workers/:workerId" element={<WorkerImformationPage />} />
-          <Route path="/workers/:workerId/members" element={<MembersPage />} />
+          <Route path="/workers/:workerId/members" element={<TrainerMembersPage />} />
           <Route path="/workers/:workerId/members/:memberId" element={<MemberImformationPage />} />
           <Route path="/workers/:workerId/chats" element={<ChattingListPage />} />
           <Route path="/workers/:workerId/chats/:chatId" element={<ChattingPage />} />

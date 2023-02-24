@@ -43,8 +43,14 @@ export default class ApiService {
     return data;
   }
 
-  async approveLecture(lectureId, userId) {
-    const { data } = await axios.patch(`${baseUrl}/admin-lectures/${lectureId}`, { userId });
+  async approveLecture(lectureId, userId, message) {
+    const { data } = await axios.patch(`${baseUrl}/admin-lectures/approve/${lectureId}`, { userId, message });
+
+    return data;
+  }
+
+  async deleteLecture(lectureId, userId, message) {
+    const { data } = await axios.patch(`${baseUrl}/admin-lectures/cancel/${lectureId}`, { userId, message });
 
     return data;
   }
@@ -86,7 +92,7 @@ export default class ApiService {
   }
 
   async fetchWorkers() {
-    const { data } = await axios.get(`${baseUrl}/trainers`);
+    const { data } = await axios.get(`${baseUrl}/admin-trainers`);
 
     return data;
   }
