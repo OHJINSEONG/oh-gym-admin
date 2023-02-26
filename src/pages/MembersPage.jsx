@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import useMemberManageStore from '../hooks/useMemberManageStore';
 
@@ -75,8 +75,6 @@ const TrainerInformation = styled.div`
 `;
 
 export default function MembersPage() {
-  const navigator = useNavigate();
-
   const memberManageStore = useMemberManageStore();
 
   const find = async () => {
@@ -93,7 +91,6 @@ export default function MembersPage() {
       <h1>
         회원 관리
       </h1>
-      {/* <p>회원 관리</p> */}
       {memberManageStore.members.length
         ? memberManageStore.members.map((member) => (
           <li key={member.id}>
@@ -119,7 +116,7 @@ export default function MembersPage() {
                 </div>
               </TrainerInformation>
             </Link>
-            {/* <button type="button" onClick={() => navigator(`${member?.user.id}/chats`)}>상담톡</button> */}
+            <button type="button" onClick={() => navigator(`${member?.user.id}/chats`)}>삭제</button>
           </li>
         ))
         : null}

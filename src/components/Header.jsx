@@ -55,9 +55,6 @@ export default function Header() {
             <Link to="/">home</Link>
           </li>
           <li>
-            <Link to="/register">register</Link>
-          </li>
-          <li>
             <Link to="/members">members</Link>
           </li>
           <li>
@@ -71,6 +68,9 @@ export default function Header() {
           </li>
           <li>
             <Link to="/sales">sales</Link>
+          </li>
+          <li>
+            <Link to="/register">register</Link>
           </li>
         </ul>
       </nav>

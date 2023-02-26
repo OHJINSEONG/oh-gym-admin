@@ -127,7 +127,6 @@ export default function TrainerMembersPage() {
                 </div>
               </TrainerInformation>
             </Link>
-            {/* <button type="button" onClick={() => navigator(`${management?.user.id}/chats`)}>상담톡</button> */}
             <button type="button" className="admin" onClick={() => navigator(`${management?.user.id}`, { state: { diarys: management?.diarys, member: management.user } })}>운동일지</button>
           </li>
         ))
