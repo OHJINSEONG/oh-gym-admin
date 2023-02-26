@@ -97,6 +97,12 @@ export default function WorkersPage() {
 
   const { workers } = workerManageStore;
 
+  if (!workerManageStore.workers.length) {
+    return (
+      <Container />
+    );
+  }
+
   return (
     <Container>
       <h1>Workers</h1>
