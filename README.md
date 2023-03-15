@@ -1,6 +1,6 @@
 # OhGym-admin
 
-<img src="https://user-images.githubusercontent.com/107606892/221401018-cbbfa326-99f4-43fc-8144-d1716e08593d.png">
+<img width="1000px" src="https://user-images.githubusercontent.com/107606892/221401018-cbbfa326-99f4-43fc-8144-d1716e08593d.png">
 
 ## 프로젝트 소개
 OhGym은 간단하게 PT,락커 신청을 할수있고 운동일지를 쉽게 관리 할 수 있는 개인 프랜차이징 헬스장 관리 서비스입니다.
@@ -28,6 +28,7 @@ OhGym은 간단하게 PT,락커 신청을 할수있고 운동일지를 쉽게 �
 
 ## 주요 기능
 
+### 관리자
 - 회원,직원,락커,매출 목록
 - 트레이너 시간 관리
 - 피티,락커 신청 수락 및 거절

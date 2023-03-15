@@ -69,9 +69,9 @@ export default function Header() {
           <li>
             <Link to="/sales">sales</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/register">register</Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </Container>
