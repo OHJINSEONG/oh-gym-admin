@@ -92,10 +92,13 @@ export default function MembersPage() {
         회원 관리
       </h1>
       {memberManageStore.members.length
-        ? memberManageStore.members.map((member) => (
+        ? memberManageStore.members.map((member, index) => (
           <li key={member.id}>
             <Link className="item" to={`${member.id}`}>
               <TrainerInformation>
+                <p>
+                  {index}
+                </p>
                 <p>
                   이름:
                   {member.userName}
